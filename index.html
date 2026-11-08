@@ -1,41 +1,23 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sword Battles Wiki</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-<header>
-    <h1>Sword Battles Wiki</h1>
-    <p>Официальная база знаний игры от roma19072114</p>
-</header>
-
-<div class="main-layout">
-    <nav>
-        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.querySelectorAll('nav button').forEach(b=>b.className=''); document.getElementById('main-page').style.display='block'; this.className='active';" class="active">🏠 Главная</button>
-        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.querySelectorAll('nav button').forEach(b=>b.className=''); document.getElementById('currency-page').style.display='block'; this.className='active';">💰 Валюта (Slashes)</button>
-        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.querySelectorAll('nav button').forEach(b=>b.className=''); document.getElementById('swords-page').style.display='block'; this.className='active';">⚔️ Мечи</button>
-    </nav>
-
+    <!-- Содержимое страниц -->
     <main>
-        <section id="main-page" class="wiki-section" style="display: block;">
+        <!-- Раздел: Главная -->
+        <section id="main-page" class="wiki-section active">
             <h2>Добро пожаловать на Вики игры Sword Battles!</h2>
             <p>Это приватная база знаний, созданная для описания всех предметов, механик и секретов игры.</p>
             <p>Используй меню слева, чтобы переключаться между интересующими тебя разделами.</p>
         </section>
 
-        <section id="currency-page" class="wiki-section" style="display: none;">
+        <!-- Раздел: Валюта -->
+        <section id="currency-page" class="wiki-section">
             <h2>Валюта: Слэши (Slashes)</h2>
-            <div class="currency-info">
-                💰 <b>Слэши (Slashes)</b> — основная внутриигровая валюта в Sword Battles.
+            <p><b>Слэши (Slashes)</b> — основная внутриигровая валюта в Sword Battles.</p>
+            <div class="currency-info" style="margin-top: 15px;">
+                ⚠️ <b>Важное примечание:</b> Слэши используются не для покупки мечей, а непосредственно для их <b>применения и использования</b> в сражениях!
             </div>
-            <p>⚠️ <b>Важное примечание:</b> Слэши используются не для покупки мечей, а непосредственно для их <b>применения и использования</b> в сражениях!</p>
         </section>
 
-        <section id="swords-page" class="wiki-section" style="display: none;">
+        <!-- Раздел: Мечи -->
+        <section id="swords-page" class="wiki-section">
             <h2>Список мечей (Swords)</h2>
             <table>
                 <thead>
@@ -86,7 +68,3 @@
             </table>
         </section>
     </main>
-</div>
-
-</body>
-</html>

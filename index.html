@@ -6,44 +6,87 @@
     <title>Sword Battles Wiki</title>
     <style>
         :root {
-            --bg-color: #1a1a1a;
+            --bg-color: #121212;
             --text-color: #e0e0e0;
             --accent-color: #ffd700;
-            --card-bg: #2a2a2a;
+            --card-bg: #1e1e1e;
+            --nav-bg: #1a1a1a;
+            --hover-color: #333;
         }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
         header {
-            background-color: #111;
+            background-color: #0a0a0a;
             padding: 20px;
             text-align: center;
             border-bottom: 3px solid var(--accent-color);
         }
-        h1 { margin: 0; color: var(--accent-color); font-size: 2.5em; }
-        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px; }
-        .currency-info {
-            background: linear-gradient(45deg, #2c3e50, #3498db);
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 30px;
+        header h1 { margin: 0; color: var(--accent-color); font-size: 2.2em; }
+        
+        .main-layout {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        
+        /* Боковое меню */
+        nav {
+            width: 250px;
+            background-color: var(--nav-bg);
+            border-right: 1px solid #2d2d2d;
+            padding: 20px 10px;
+        }
+        nav button {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            transition: 0.2s;
+        }
+        nav button:hover, nav button.active {
+            background-color: var(--hover-color);
+            color: var(--accent-color);
             font-weight: bold;
         }
+
+        /* Контентная зона */
+        main {
+            flex: 1;
+            padding: 30px;
+            background-color: var(--bg-color);
+        }
+        .wiki-section { display: none; }
+        .wiki-section.active { display: block; }
+
+        /* Таблицы */
         table {
             width: 100%;
             border-collapse: collapse;
             background-color: var(--card-bg);
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            margin-top: 20px;
         }
-        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #3a3a3a; }
-        th { background-color: #222; color: var(--accent-color); font-weight: 600; }
-        tr:hover { background-color: #333; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #2d2d2d; }
+        th { background-color: #0f0f0f; color: var(--accent-color); }
+        tr:hover { background-color: #252525; }
         .price { color: #57ff57; font-weight: bold; }
     </style>
 </head>
@@ -54,60 +97,96 @@
     <p>Официальная база знаний игры от roma19072114</p>
 </header>
 
-<div class="container">
-    <div class="currency-info">
-        💰 Валюта игры: Слэши (Slashes) — используются для покупки более мощных и редких мечей в магазине.
-    </div>
+<div class="main-layout">
+    <!-- Навигация слева -->
+    <nav>
+        <button onclick="showSection('main-page')" id="btn-main-page" class="active">🏠 Главная</button>
+        <button onclick="showSection('currency-page')" id="btn-currency-page">💰 Валюта (Slashes)</button>
+        <button onclick="showSection('swords-page')" id="btn-swords-page">⚔️ Мечи</button>
+    </nav>
 
-    <h2>Список мечей (Swords)</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Название меча</th>
-                <th>Урон от удара (Slash)</th>
-                <th>Урон от выпада (Lunge)</th>
-                <th>Цена (Slashes)</th>
-                <th>Особые свойства (Твои заметки)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td><b>Classic Sword</b></td><td>1</td><td>2</td><td class="price">0</td><td>Стартовый меч. Впиши сюда свойства...</td></tr>
-            <tr><td><b>Stone Sword</b></td><td>0.5</td><td>2</td><td class="price">20</td><td></td></tr>
-            <tr><td><b>Gravity Sword</b></td><td>1</td><td>2</td><td class="price">40</td><td></td></tr>
-            <tr><td><b>Firebrand Sword</b></td><td>2</td><td>—</td><td class="price">80</td><td></td></tr>
-            <tr><td><b>Sticky Sword</b></td><td>1</td><td>2</td><td class="price">120</td><td></td></tr>
-            <tr><td><b>Ghost Walker</b></td><td>1–6</td><td>2–12</td><td class="price">160</td><td></td></tr>
-            <tr><td><b>Venomshank</b></td><td>1</td><td>1/2</td><td class="price">180</td><td></td></tr>
-            <tr><td><b>Teleport Sword</b></td><td>1</td><td>2</td><td class="price">300</td><td></td></tr>
-            <tr><td><b>Ragdoll Sword</b></td><td>1</td><td>2</td><td class="price">350</td><td></td></tr>
-            <tr><td><b>Blood Sword</b></td><td>1</td><td>2.5</td><td class="price">400</td><td></td></tr>
-            <tr><td><b>Smoke Sword</b></td><td>1</td><td>2</td><td class="price">450</td><td></td></tr>
-            <tr><td><b>Vampire Sword</b></td><td>1</td><td>2</td><td class="price">500</td><td></td></tr>
-            <tr><td><b>Reaper Sword</b></td><td>1</td><td>—</td><td class="price">666</td><td></td></tr>
-            <tr><td><b>Ice Sword</b></td><td>1</td><td>2</td><td class="price">750</td><td></td></tr>
-            <tr><td><b>Speedrun Sword</b></td><td>1</td><td>2</td><td class="price">850</td><td></td></tr>
-            <tr><td><b>Balloon Sword</b></td><td>1</td><td>2</td><td class="price">925</td><td></td></tr>
-            <tr><td><b>Dull Sword</b></td><td>1</td><td>2</td><td class="price">975</td><td></td></tr>
-            <tr><td><b>Big Sword</b></td><td>10</td><td>—</td><td class="price">1001</td><td></td></tr>
-            <tr><td><b>Mirror Sword</b></td><td>1</td><td>2</td><td class="price">1100</td><td></td></tr>
-            <tr><td><b>Magnetic Sword</b></td><td>1</td><td>2</td><td class="price">1200</td><td></td></tr>
-            <tr><td><b>Illumina Sword</b></td><td>1</td><td>2</td><td class="price">1400</td><td></td></tr>
-            <tr><td><b>Rope Sword</b></td><td>1</td><td>2</td><td class="price">2000</td><td></td></tr>
-            <tr><td><b>Bubble Sword</b></td><td>1</td><td>2</td><td class="price">2100</td><td></td></tr>
-            <tr><td><b>Soap Sword</b></td><td>1</td><td>2</td><td class="price">2200</td><td></td></tr>
-            <tr><td><b>Cartoon Sword</b></td><td>1</td><td>2</td><td class="price">2300</td><td></td></tr>
-            <tr><td><b>Lobotomy Sword</b></td><td>1</td><td>2</td><td class="price">2404</td><td></td></tr>
-            <tr><td><b>Colorblind Sword</b></td><td>1</td><td>2</td><td class="price">2600</td><td></td></tr>
-            <tr><td><b>Fps Sword</b></td><td>1</td><td>2</td><td class="price">2800</td><td></td></tr>
-            <tr><td><b>Pixel Sword</b></td><td>1</td><td>2</td><td class="price">3000</td><td></td></tr>
-            <tr><td><b>Inverted Sword</b></td><td>1</td><td>2</td><td class="price">3200</td><td></td></tr>
-            <tr><td><b>Random Sword</b></td><td>1</td><td>2</td><td class="price">4000</td><td></td></tr>
-            <tr><td><b>Rage Sword</b></td><td>1</td><td>2 / 4</td><td class="price">4200</td><td></td></tr>
-            <tr><td><b>Gold Sword</b></td><td>0.5</td><td>3</td><td class="price">4400</td><td></td></tr>
-            <tr><td><b>404 Sword</b></td><td>1</td><td>2</td><td class="price">6000</td><td></td></tr>
-        </tbody>
-    </table>
+    <!-- Содержимое страниц -->
+    <main>
+        <!-- Раздел: Главная -->
+        <section id="main-page" class="wiki-section active">
+            <h2>Добро пожаловать на Вики игры Sword Battles!</h2>
+            <p>Это приватная база знаний, созданная для описания всех предметов, механик и секретов игры.</p>
+            <p>Используй меню слева, чтобы переключаться между интересующими тебя разделами.</p>
+        </section>
+
+        <!-- Раздел: Валюта -->
+        <section id="currency-page" class="wiki-section">
+            <h2>Валюта: Слэши (Slashes)</h2>
+            <p><b>Слэши (Slashes)</b> — основная внутриигровая валюта в Sword Battles.</p>
+            <p>Они используются для покупки новых мечей на спавне. Напиши здесь, как их фармить!</p>
+        </section>
+
+        <!-- Раздел: Мечи -->
+        <section id="swords-page" class="wiki-section">
+            <h2>Список мечей (Swords)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Название меча</th>
+                        <th>Урон (Slash)</th>
+                        <th>Урон (Lunge)</th>
+                        <th>Цена (Slashes)</th>
+                        <th>Особые свойства (Твои заметки)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><b>Classic Sword</b></td><td>1</td><td>2</td><td class="price">0</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Stone Sword</b></td><td>0.5</td><td>2</td><td class="price">20</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Gravity Sword</b></td><td>1</td><td>2</td><td class="price">40</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Firebrand Sword</b></td><td>2</td><td>—</td><td class="price">80</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Sticky Sword</b></td><td>1</td><td>2</td><td class="price">120</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Ghost Walker</b></td><td>1–6</td><td>2–12</td><td class="price">160</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Venomshank</b></td><td>1</td><td>1/2</td><td class="price">180</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Teleport Sword</b></td><td>1</td><td>2</td><td class="price">300</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Ragdoll Sword</b></td><td>1</td><td>2</td><td class="price">350</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Blood Sword</b></td><td>1</td><td>2.5</td><td class="price">400</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Smoke Sword</b></td><td>1</td><td>2</td><td class="price">450</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Vampire Sword</b></td><td>1</td><td>2</td><td class="price">500</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Reaper Sword</b></td><td>1</td><td>—</td><td class="price">666</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Ice Sword</b></td><td>1</td><td>2</td><td class="price">750</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Speedrun Sword</b></td><td>1</td><td>2</td><td class="price">850</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Balloon Sword</b></td><td>1</td><td>2</td><td class="price">925</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Dull Sword</b></td><td>1</td><td>2</td><td class="price">975</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Big Sword</b></td><td>10</td><td>—</td><td class="price">1001</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Mirror Sword</b></td><td>1</td><td>2</td><td class="price">1100</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Magnetic Sword</b></td><td>1</td><td>2</td><td class="price">1200</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Illumina Sword</b></td><td>1</td><td>2</td><td class="price">1400</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Rope Sword</b></td><td>1</td><td>2</td><td class="price">2000</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Bubble Sword</b></td><td>1</td><td>2</td><td class="price">2100</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Soap Sword</b></td><td>1</td><td>2</td><td class="price">2200</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Cartoon Sword</b></td><td>1</td><td>2</td><td class="price">2300</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Lobotomy Sword</b></td><td>1</td><td>2</td><td class="price">2404</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Colorblind Sword</b></td><td>1</td><td>2</td><td class="price">2600</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Fps Sword</b></td><td>1</td><td>2</td><td class="price">2800</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Pixel Sword</b></td><td>1</td><td>2</td><td class="price">3000</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Inverted Sword</b></td><td>1</td><td>2</td><td class="price">3200</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Random Sword</b></td><td>1</td><td>2</td><td class="price">4000</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Rage Sword</b></td><td>1</td><td>2 / 4</td><td class="price">4200</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>Gold Sword</b></td><td>0.5</td><td>3</td><td class="price">4400</td><td>Впиши свойство...</td></tr>
+                    <tr><td><b>404 Sword</b></td><td>1</td><td>2</td><td class="price">6000</td><td>Впиши свойство...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
 </div>
+
+<script>
+    function showSection(sectionId) {
+        // Скрываем все разделы
+        document.querySelectorAll('.wiki-section').forEach(sec => sec.classList.remove('active'));
+        // Убираем активный класс у кнопок
+        document.querySelectorAll('nav button').forEach(btn => btn.classList.remove('active'));
+        
+        // Показываем нужный раздел и делаем кнопку активной
+        document.getElementById(sectionId).classList.add('active');
+        document.getElementById('btn-' + sectionId).classList.add('active');
+    }
+</script>
 
 </body>
 </html>

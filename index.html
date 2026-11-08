@@ -4,7 +4,107 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sword Battles Wiki</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212 !important;
+            color: #e0e0e0 !important;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #0a0a0a !important;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffd700;
+        }
+        header h1 {
+            margin: 0;
+            color: #ffd700 !important;
+            font-size: 2.2em;
+        }
+        header p {
+            margin: 5px 0 0 0;
+            color: #b0b0b0 !important;
+        }
+        .main-layout {
+            display: flex;
+            flex: 1;
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        nav {
+            width: 250px;
+            background-color: #1a1a1a !important;
+            border-right: 1px solid #2d2d2d;
+            padding: 20px 10px;
+            box-sizing: border-box;
+        }
+        nav button {
+            display: block;
+            width: 100%;
+            background: none !important;
+            border: none;
+            color: #e0e0e0 !important;
+            padding: 12px 15px;
+            text-align: left;
+            font-size: 1.1em;
+            cursor: pointer;
+            border-radius: 6px;
+            margin-bottom: 5px;
+            transition: 0.2s;
+        }
+        nav button:hover, nav button.active {
+            background-color: #333333 !important;
+            color: #ffd700 !important;
+            font-weight: bold;
+        }
+        main {
+            flex: 1;
+            padding: 30px;
+            background-color: #121212 !important;
+            box-sizing: border-box;
+        }
+        .wiki-section {
+            display: none;
+        }
+        .currency-info {
+            background: linear-gradient(45deg, #1e3d59, #17b978) !important;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #ffd700;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e1e1e !important;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #2d2d2d;
+            color: #e0e0e0 !important;
+        }
+        th {
+            background-color: #0f0f0f !important;
+            color: #ffd700 !important;
+        }
+        tr:hover {
+            background-color: #252525 !important;
+        }
+        .price {
+            color: #57ff57 !important;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
@@ -15,9 +115,9 @@
 
 <div class="main-layout">
     <nav>
-        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.querySelectorAll('nav button').forEach(b=>b.className=''); document.getElementById('main-page').style.display='block'; this.className='active';" class="active">🏠 Главная</button>
-        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.querySelectorAll('nav button').forEach(b=>b.className=''); document.getElementById('currency-page').style.display='block'; this.className='active';">💰 Валюта (Slashes)</button>
-        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.querySelectorAll('nav button').forEach(b=>b.className=''); document.getElementById('swords-page').style.display='block'; this.className='active';">⚔️ Мечи</button>
+        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.getElementById('main-page').style.display='block'; document.querySelectorAll('nav button').forEach(b=>b.className=''); this.className='active';" class="active">🏠 Главная</button>
+        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.getElementById('currency-page').style.display='block'; document.querySelectorAll('nav button').forEach(b=>b.className=''); this.className='active';">💰 Валюта (Slashes)</button>
+        <button onclick="document.querySelectorAll('.wiki-section').forEach(s=>s.style.display='none'); document.getElementById('swords-page').style.display='block'; document.querySelectorAll('nav button').forEach(b=>b.className=''); this.className='active';">⚔️ Мечи</button>
     </nav>
 
     <main>
@@ -77,16 +177,3 @@
                     <tr><td><b>Colorblind Sword</b></td><td>1</td><td>2</td><td class="price">2600</td><td>Впиши свойство...</td></tr>
                     <tr><td><b>Fps Sword</b></td><td>1</td><td>2</td><td class="price">2800</td><td>Впиши свойство...</td></tr>
                     <tr><td><b>Pixel Sword</b></td><td>1</td><td>2</td><td class="price">3000</td><td>Впиши свойство...</td></tr>
-                    <tr><td><b>Inverted Sword</b></td><td>1</td><td>2</td><td class="price">3200</td><td>Впиши свойство...</td></tr>
-                    <tr><td><b>Random Sword</b></td><td>1</td><td>2</td><td class="price">4000</td><td>Впиши свойство...</td></tr>
-                    <tr><td><b>Rage Sword</b></td><td>1</td><td>2 / 4</td><td class="price">4200</td><td>Впиши свойство...</td></tr>
-                    <tr><td><b>Gold Sword</b></td><td>0.5</td><td>3</td><td class="price">4400</td><td>Впиши свойство...</td></tr>
-                    <tr><td><b>404 Sword</b></td><td>1</td><td>2</td><td class="price">6000</td><td>Впиши свойство...</td></tr>
-                </tbody>
-            </table>
-        </section>
-    </main>
-</div>
-
-</body>
-</html>
